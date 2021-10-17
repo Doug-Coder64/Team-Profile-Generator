@@ -1,10 +1,14 @@
-const inquier = require('inquier');
+const inquirer = require('inquirer');
 const fs = require('fs');
 const Manager = require('./lib/Manager');
 const Intern = require('./lib/Intern');
 const Engineer = require('./lib/Engineer');
 
+const employees = [];
+
 function htmlRoster() {
+    
+    //HTML that will fill with all the employees
     const roster  = 
     `<!DOCTYPE html>
     <html lang="en">
@@ -20,10 +24,10 @@ function htmlRoster() {
             <title>Team Profile</title>
         </head>
         <body>
-            <nav class="navbar navbar-dark text-center" style="background-color: red">My Team</nav>
+            <nav class="navbar navbar-dark" style="background-color: red"><div class="h2 mx-auto text-center">My Team</div></nav>
             <div class="container">
                 <div class="row">
-                    ${getEmployees()}
+                    ${getEmployeeCards()}
                 </div>
             </div>
         </body>
@@ -32,15 +36,18 @@ function htmlRoster() {
     createHTMLFile(roster);
 }
 
-
+//function that writes HTML File into /dist
 function createHTMLFile(html) {
     fs.writeFile("./dist/index.html", html, function(err) {
         if(err) console.error(err);
     });
 }
 
-function getEmployees(){
+function getEmployeeCards(){
    
+
     
     return `<div></div>`;
 }
+
+htmlRoster();
