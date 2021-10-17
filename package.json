@@ -1,0 +1,22 @@
+{
+  "name": "team-profile-generator",
+  "version": "1.0.0",
+  "description": "Generates HTML Page based on users input",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Doug-Coder64/Team-Profile-Generator.git"
+  },
+  "author": "Doug-Coder64",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Doug-Coder64/Team-Profile-Generator/issues"
+  },
+  "homepage": "https://github.com/Doug-Coder64/Team-Profile-Generator#readme"
+}
