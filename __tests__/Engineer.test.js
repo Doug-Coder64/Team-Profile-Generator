@@ -1,4 +1,3 @@
-const Employee = require('../lib/Employee.js');
 const Engineer = require('../lib/Engineer.js');
 
 test("Test get role method", () => {
@@ -9,4 +8,4 @@ test("Test get role method", () => {
 test("Tests the get Github username method", () => {
     const engineer = new Engineer('dave', 1, 'dave@co.com', 'dave-user');
     expect(engineer.getGithub()).toEqual('dave-user');
-})
+});
