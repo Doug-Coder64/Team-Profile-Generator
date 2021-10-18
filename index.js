@@ -81,7 +81,7 @@ function getEmployees() {
         inquirer.prompt([
             {
             message: special,
-            name: "special", 
+            name: "roleSpecial", 
             },
             {
                 type: "list",
@@ -89,16 +89,55 @@ function getEmployees() {
                 choices: ["Yes", "No"],
                 name: "addEmployees"
             }
-        ]).then(function({special, addEmployees}){
-            
+        ]).then(function({roleSpecial, addEmployees}){
+            let employee;
+            switch (roleSpecial) {
+                case "Manager":
+                    employee = new Manager(name, id, email, roleSpecial);
+                    break;
+                case "Engineer":
+                    employee = new Engineer(name, id, email, roleSpecial);
+                    break;
+                case "Intern":
+                    employee = new Intern(name, id, email, roleSpecial);
+                    break;
+            }
+            createEmployeeCard(employee);
             if(addEmployees) getEmployees();
         })
 
     })
 }
 
-function createEmployees() {
+function createEmployeeCard(employee) {
+    let speicalInfo;
+    switch(employee.getRole()) {
+        case "Manager":
+            specialInfo = `Office Number: ${employee.getOfficeNumber()}`;
+            break;
+        case "Engineer":
+            specialInfo = `Github: ${employee.getGithub()}`;
+            break;
+        case "Intern":
+            specialInfo = `School: ${employee.getSchool()}`;
+            break;
+    }
+    
+    let card = 
+    `<div class="col-4">
+        <div class="card" style="width:18rem;">
+            <div class="card-body">
+                <h5 class="card-title">${employee.getName()}</h5> 
+                <h6 class="card-subtitle">${employee.getRole()}</h6>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">${employee.getId()}</li>
+                    <li class="list-group-item">${employee.getEmail()}</li>
+                    <li class="list-group-item">${specialInfo}</li>
+                </ul>
+            </div>
+        </div>
+    </div>`
 
+    employees.push(card);
 }
 
-getEmployees();
