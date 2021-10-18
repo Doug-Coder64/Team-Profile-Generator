@@ -4,10 +4,17 @@ const Manager = require('./lib/Manager');
 const Intern = require('./lib/Intern');
 const Engineer = require('./lib/Engineer');
 
+//contains each card of employees added
 const employees = [];
 
 function htmlRoster() {
-    
+    let employeesCards = "";
+
+    //merges all employee cards into a big string of HTML 
+    for (let i = 0; i < employees.length; i++) {
+        employeesCards += employees[i];
+    }
+
     //HTML that will fill with all the employees
     const roster  = 
     `<!DOCTYPE html>
@@ -27,7 +34,7 @@ function htmlRoster() {
             <nav class="navbar navbar-dark" style="background-color: red"><div class="h2 mx-auto text-center">My Team</div></nav>
             <div class="container">
                 <div class="row">
-                    ${employees}
+                    ${employeesCards}
                 </div>
             </div>
         </body>
@@ -115,6 +122,7 @@ function getEmployees() {
     })
 }
 
+//Creates emmployee card and fills it based on their role
 function createEmployeeCard(employee) {
         let speicalInfo;
         switch(employee.getRole()) {
@@ -130,7 +138,7 @@ function createEmployeeCard(employee) {
         }
         
         let card = 
-        `<div class="col-4">
+        `<div class="col-4 m-2">
             <div class="card" style="width:18rem;">
                 <div class="card-body">
                     <h5 class="card-title">${employee.getName()}</h5> 
