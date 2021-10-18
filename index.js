@@ -43,11 +43,62 @@ function createHTMLFile(html) {
     });
 }
 
-function getEmployeeCards(){
-   
+//Inquirer call and response to have user enter all employees 
+function getEmployees() {
+    inquirer.prompt([{
+        message: 'Please Enter the Team Members Name:',
+        name: 'name',
+    },
+    {
+        type: 'list',
+        message: 'Please select the Team members Role',
+        choices: ["Manager", "Engineer", "Intern"],
+        name: 'role'
+    },
+    {   
+        message: "Please Enter Team Members ID:",
+        name: 'id'
+    },
+    {
+        message: "Please Enter Team Members Email:",
+        name: 'email',
+    }]).then(({name, role, id, email}) => {
+        let special = "Please enter the employee's ";
+        //Adds string to speical to be used later for validation
+        switch(role){
+            case "Manager":
+                special += "Office Number";
+                break;
+            case "Intern":
+                special += "School";
+                break;
+            case "Engineer":
+                special += "GitHub Username";
+                break;
+        }
 
-    
-    return `<div></div>`;
+        //Inquirer to get special information for employee and checks if there are more employees to be added
+        inquirer.prompt([
+            {
+            message: special,
+            name: "special", 
+            },
+            {
+                type: "list",
+                message: "Are you wanting to add more Employees?",
+                choices: ["Yes", "No"],
+                name: "addEmployees"
+            }
+        ]).then(function({special, addEmployees}){
+            
+            if(addEmployees) getEmployees();
+        })
+
+    })
 }
 
-htmlRoster();
+function createEmployees() {
+
+}
+
+getEmployees();
