@@ -104,13 +104,11 @@ function getEmployees() {
                     break;
                 case "Engineer":
                     employee = new Engineer(name, id, email, roleSpecial);
-                    console.log(employee);
                     break;
                 case "Intern":
                     employee = new Intern(name, id, email, roleSpecial);
                     break;
             }
-            console.log(addEmployees);
             createEmployeeCard(employee);
             if(addEmployees === "Yes"){
                 getEmployees();
@@ -130,7 +128,7 @@ function createEmployeeCard(employee) {
                 specialInfo = `Office Number: ${employee.getOfficeNumber()}`;
                 break;
             case "Engineer":
-                specialInfo = `Github: ${employee.getGithub()}`;
+                specialInfo = `Github: <a href="https://github.com/${employee.getGithub()}">${employee.getGithub()}</a>`;
                 break;
             case "Intern":
                 specialInfo = `School: ${employee.getSchool()}`;
@@ -145,7 +143,7 @@ function createEmployeeCard(employee) {
                     <h6 class="card-subtitle">${employee.getRole()}</h6>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">${employee.getId()}</li>
-                        <li class="list-group-item">${employee.getEmail()}</li>
+                        <li class="list-group-item"><a href="mailto:${employee.getEmail()}">${employee.getEmail()}</a></li>
                         <li class="list-group-item">${specialInfo}</li>
                     </ul>
                 </div>
@@ -153,7 +151,6 @@ function createEmployeeCard(employee) {
         </div>`
 
         employees.push(card);
-        console.log(employees);
 }
 
 getEmployees();
