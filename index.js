@@ -27,7 +27,7 @@ function htmlRoster() {
             <nav class="navbar navbar-dark" style="background-color: red"><div class="h2 mx-auto text-center">My Team</div></nav>
             <div class="container">
                 <div class="row">
-                    ${getEmployeeCards()}
+                    ${employees}
                 </div>
             </div>
         </body>
@@ -91,53 +91,61 @@ function getEmployees() {
             }
         ]).then(function({roleSpecial, addEmployees}){
             let employee;
-            switch (roleSpecial) {
+            switch (role) {
                 case "Manager":
                     employee = new Manager(name, id, email, roleSpecial);
                     break;
                 case "Engineer":
                     employee = new Engineer(name, id, email, roleSpecial);
+                    console.log(employee);
                     break;
                 case "Intern":
                     employee = new Intern(name, id, email, roleSpecial);
                     break;
             }
+            console.log(addEmployees);
             createEmployeeCard(employee);
-            if(addEmployees) getEmployees();
+            if(addEmployees === "Yes"){
+                getEmployees();
+            } else {
+                htmlRoster();
+            }
         })
 
     })
 }
 
 function createEmployeeCard(employee) {
-    let speicalInfo;
-    switch(employee.getRole()) {
-        case "Manager":
-            specialInfo = `Office Number: ${employee.getOfficeNumber()}`;
-            break;
-        case "Engineer":
-            specialInfo = `Github: ${employee.getGithub()}`;
-            break;
-        case "Intern":
-            specialInfo = `School: ${employee.getSchool()}`;
-            break;
-    }
-    
-    let card = 
-    `<div class="col-4">
-        <div class="card" style="width:18rem;">
-            <div class="card-body">
-                <h5 class="card-title">${employee.getName()}</h5> 
-                <h6 class="card-subtitle">${employee.getRole()}</h6>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">${employee.getId()}</li>
-                    <li class="list-group-item">${employee.getEmail()}</li>
-                    <li class="list-group-item">${specialInfo}</li>
-                </ul>
+        let speicalInfo;
+        switch(employee.getRole()) {
+            case "Manager":
+                specialInfo = `Office Number: ${employee.getOfficeNumber()}`;
+                break;
+            case "Engineer":
+                specialInfo = `Github: ${employee.getGithub()}`;
+                break;
+            case "Intern":
+                specialInfo = `School: ${employee.getSchool()}`;
+                break;
+        }
+        
+        let card = 
+        `<div class="col-4">
+            <div class="card" style="width:18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">${employee.getName()}</h5> 
+                    <h6 class="card-subtitle">${employee.getRole()}</h6>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">${employee.getId()}</li>
+                        <li class="list-group-item">${employee.getEmail()}</li>
+                        <li class="list-group-item">${specialInfo}</li>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </div>`
+        </div>`
 
-    employees.push(card);
+        employees.push(card);
+        console.log(employees);
 }
 
+getEmployees();
