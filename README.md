@@ -1,8 +1,6 @@
 
   # Team Profile Generator
   
-  [![License](https://img.shields.io/badge/License-IPL%201.0-blue.svg)](https://opensource.org/licenses/IPL-1.0)
-
   ## Description
   Generate a webpage that displays your teams basic info
   
@@ -28,7 +26,7 @@
  To Run tests type `npm test`. You can also include `Employee`, `Engineer`, `Manager` or `Intern` after to test just those classes.
 
   ## License 
- This Project is covered under the IPL 1.0
+ This Project is covered under the ISC
 
   ## Questions 
  Questions about the project? 
